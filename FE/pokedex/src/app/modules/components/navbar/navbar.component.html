@@ -1,0 +1,56 @@
+<div class="app-container">
+  <header class="pokedex-header">
+    <div class="header-content">
+      <div class="logo-container">
+        <h1>Pokédex</h1>
+      </div>
+
+      <nav class="pokedex-nav">
+        <button
+          class="nav-button"
+          [class.active]="currentView === 'pokemon'"
+          (click)="currentView = 'pokemon'"
+        >
+          Pokémon
+        </button>
+
+        <button
+          class="nav-button"
+          [class.active]="currentView === 'species'"
+          (click)="currentView = 'species'"
+        >
+          Species
+        </button>
+
+        <button
+          class="nav-button"
+          [class.active]="currentView === 'colors'"
+          (click)="currentView = 'colors'"
+        >
+          Colors
+        </button>
+
+        <button
+          class="nav-button"
+          [class.active]="currentView === 'shapes'"
+          (click)="currentView = 'shapes'"
+        >
+          Shapes
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <app-pokemon-card *ngIf="currentView === 'pokemon'" />
+    <div *ngIf="currentView === 'species'" class="view-container">
+      <h2>Species View</h2>
+    </div>
+    <div *ngIf="currentView === 'colors'" class="view-container">
+      <h2>Colors View</h2>
+    </div>
+    <div *ngIf="currentView === 'shapes'" class="view-container">
+      <h2>Shapes View</h2>
+    </div>
+  </main>
+</div>

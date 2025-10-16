@@ -1,0 +1,92 @@
+<div class="pokemon-flex-container">
+  <ng-container *ngIf="pokemon()">
+    <div
+      class="pokedex-card"
+      *ngFor="let p of pokemon"
+      [class]="getTypeClass(p)"
+    >
+      <!-- Header con número y tipos -->
+      <div class="card-header">
+        <span class="pokemon-number">#{{ formatNumber(p.id) }}</span>
+        <div class="type-badges">
+          <span class="type-badge" [style.background]="getTypeColor(p.type1)">
+            {{ p.type1 | titlecase }}
+          </span>
+          <span
+            *ngIf="p.type2"
+            class="type-badge"
+            [style.background]="getTypeColor(p.type2)"
+          >
+            {{ p.type2 | titlecase }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Imagen del Pokémon desde el backend -->
+      <div class="pokemon-image-container">
+        <img
+          [src]="p.image_url"
+          [alt]="p.name"
+          class="pokemon-image"
+          (error)="onImageError(p)"
+        />
+      </div>
+
+      <!-- Información del Pokémon -->
+      <div class="card-body">
+        <h3 class="pokemon-name">{{ p.name | titlecase }}</h3>
+
+        <!-- Información de species si está disponible -->
+        <div *ngIf="species" class="species-info">
+          <div class="info-item" *ngIf="species.capture_rate">
+            <span class="info-label">Capture</span>
+            <span class="info-value">{{ species.capture_rate }}</span>
+          </div>
+          <div class="info-item" *ngIf="species.base_happiness">
+            <span class="info-label">Happiness</span>
+            <span class="info-value">{{ species.base_happiness }}</span>
+          </div>
+          <div class="info-item" *ngIf="species.hatch_counter">
+            <span class="info-label">Hatch</span>
+            <span class="info-value"
+              >{{ species.hatch_counter * 255 }} steps</span
+            >
+          </div>
+        </div>
+
+        <!-- Estadísticas básicas -->
+        <div class="pokemon-stats">
+          <div class="stat">
+            <span class="stat-label">Height</span>
+            <span class="stat-value"
+              >{{ p.height / 10 | number : "1.1-1" }} m</span
+            >
+          </div>
+          <div class="stat">
+            <span class="stat-label">Weight</span>
+            <span class="stat-value"
+              >{{ p.weight / 10 | number : "1.1-1" }} kg</span
+            >
+          </div>
+          <div class="stat">
+            <span class="stat-label">EXP</span>
+            <span class="stat-value">{{ p.base_experience }}</span>
+          </div>
+        </div>
+
+        <!-- Información adicional -->
+        <div class="additional-info" *ngIf="species">
+          <div class="info-item" *ngIf="species.is_baby">
+            <span class="baby-badge">Baby Pokémon</span>
+          </div>
+          <div class="info-item" *ngIf="species.has_gender_differences">
+            <span class="gender-badge">Gender Differences</span>
+          </div>
+          <div class="info-item" *ngIf="species.gender_rate !== -1">
+            <span class="gender-rate">{{ getGenderRateText() }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
