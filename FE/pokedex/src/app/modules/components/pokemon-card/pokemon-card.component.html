@@ -1,8 +1,11 @@
 @if (pokemon()) {
-
 <div class="pokemon-flex-container">
   @for (p of pokemon(); track p) {
-  <div class="pokedex-card" [class]="getTypeClass(p)">
+  <div
+    class="pokedex-card"
+    [routerLink]="['/pokemon', p.id]"
+    [class]="getTypeClass(p)"
+  >
     <div class="card-header">
       <span class="pokemon-number">#{{ formatNumber(p.id) }}</span>
       <div class="type-badges">

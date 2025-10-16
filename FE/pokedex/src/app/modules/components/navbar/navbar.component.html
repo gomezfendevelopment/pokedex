@@ -11,7 +11,13 @@
     <nav class="pokedex-nav">
       <ul>
         <li>
-          <a routerLink="/pokemon" routerLinkActive="bg-active"> Pokémon </a>
+          <a
+            routerLink="/pokemon"
+            routerLinkActive="bg-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Pokémon
+          </a>
         </li>
         <li>
           <a routerLink="/species" routerLinkActive="bg-active"> Species </a>

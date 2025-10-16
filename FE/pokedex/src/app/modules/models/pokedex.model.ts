@@ -13,6 +13,21 @@ export interface Pokemon {
   image_url: string;
 }
 
+export interface PokemonDetail {
+  id: number;
+  identifier: string;
+  speciesId: number;
+  height: number;
+  weight: number;
+  baseExperience: number;
+  order: number;
+  isDefault: boolean;
+  name: string;
+  type1: string;
+  type2: string;
+  imageUrl: string;
+}
+
 export interface PokemonSpecies {
   id: number;
   identifier: string;

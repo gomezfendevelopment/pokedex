@@ -1,13 +1,7 @@
 import { CommonModule } from "@angular/common";
-import {
-  Component,
-  DestroyRef,
-  inject,
-  input,
-  OnInit,
-  signal,
-} from "@angular/core";
+import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { Router, RouterModule } from "@angular/router";
 import { EMPTY } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 import { Pokemon } from "../../models/pokedex.model";
@@ -18,20 +12,21 @@ import { PokemonService } from "../../services/pokedex.service";
   templateUrl: "./pokemon-card.component.html",
   styleUrls: ["./pokemon-card.component.scss"],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
 })
 export class PokemonCardComponent implements OnInit {
-  pokemonInput = input<Pokemon[]>();
   pokemon = signal<Pokemon[]>([]);
 
   #pokemonService = inject(PokemonService);
   #destroyRef = inject(DestroyRef);
+  #router = inject(Router);
 
   ngOnInit(): void {
-    this.loadPokemon();
+    this.loadPokemons();
+    console.log("pokemons", this.pokemon());
   }
 
-  loadPokemon(): void {
+  loadPokemons(): void {
     this.#pokemonService
       .getPokemons()
       .pipe(
@@ -54,10 +49,12 @@ export class PokemonCardComponent implements OnInit {
   }
 
   getTypeColor(type: string): string {
+    if (!type) return "";
     return this.#pokemonService.getTypeColor(type);
   }
 
   getTypeClass(p?: Pokemon): string {
+    if (!p) return "";
     return p?.type1?.toLowerCase() ?? "";
   }
 
@@ -68,5 +65,11 @@ export class PokemonCardComponent implements OnInit {
   onImageError(p: Pokemon): void {
     if (!p) return;
     p.image_url = this.#pokemonService.getPokemonImageUrl(p.id);
+  }
+
+  pokemonDetails(id: number): void {
+    if (id == null) return;
+    console.log("Pokemon ID:", id);
+    this.#router.navigate(["/pokemon", id]);
   }
 }
