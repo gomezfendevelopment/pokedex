@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { PokemonCardComponent } from '../pokemon-card/pokemon-card.component';
 
 @Component({
@@ -7,7 +7,7 @@ import { PokemonCardComponent } from '../pokemon-card/pokemon-card.component';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   standalone: true,
-  imports: [CommonModule, PokemonCardComponent],
+  imports: [PokemonCardComponent],
 })
 export class NavbarComponent {
   currentView = 'pokemon';
