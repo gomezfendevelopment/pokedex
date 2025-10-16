@@ -1,4 +1,5 @@
 @if (pokemon()) {
+
 <div class="pokemon-flex-container">
   @for (p of pokemon(); track p) {
   <div class="pokedex-card" [class]="getTypeClass(p)">

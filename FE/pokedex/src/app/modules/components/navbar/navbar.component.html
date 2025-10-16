@@ -1,64 +1,28 @@
 <div class="app-container">
   <header class="pokedex-header">
-    <div class="header-content">
-      <div class="logo-container">
-        <h1>Pokédex</h1>
-      </div>
-
-      <nav class="pokedex-nav">
-        <button
-          class="nav-button"
-          [class.active]="currentView === 'pokemon'"
-          (click)="currentView = 'pokemon'"
-          >
-          Pokémon
-        </button>
-
-        <button
-          class="nav-button"
-          [class.active]="currentView === 'species'"
-          (click)="currentView = 'species'"
-          >
-          Species
-        </button>
-
-        <button
-          class="nav-button"
-          [class.active]="currentView === 'colors'"
-          (click)="currentView = 'colors'"
-          >
-          Colors
-        </button>
-
-        <button
-          class="nav-button"
-          [class.active]="currentView === 'shapes'"
-          (click)="currentView = 'shapes'"
-          >
-          Shapes
-        </button>
-      </nav>
+    <div class="logo-container">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg"
+        alt="Pokeball Logo"
+      />
+      <span>Pokédex</span>
     </div>
-  </header>
 
-  <main class="main-content">
-    @if (currentView === 'pokemon') {
-      <app-pokemon-card />
-    }
-    @if (currentView === 'species') {
-      <div class="view-container">
-        <h2>Species View</h2>
-      </div>
-    }
-    @if (currentView === 'colors') {
-      <div class="view-container">
-        <h2>Colors View</h2>
-      </div>
-    }
-    @if (currentView === 'shapes') {
-      <div class="view-container">
-        <h2>Shapes View</h2>
-      </div>
-    }
-  </main>
+    <nav class="pokedex-nav">
+      <ul>
+        <li>
+          <a routerLink="/pokemon" routerLinkActive="bg-active"> Pokémon </a>
+        </li>
+        <li>
+          <a routerLink="/species" routerLinkActive="bg-active"> Species </a>
+        </li>
+        <li>
+          <a routerLink="/colors" routerLinkActive="bg-active"> Colors </a>
+        </li>
+        <li>
+          <a routerLink="/shapes" routerLinkActive="bg-active"> Shapes </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 </div>
