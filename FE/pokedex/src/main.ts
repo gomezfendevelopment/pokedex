@@ -1,15 +1,19 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { importProvidersFrom } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { importProvidersFrom } from "@angular/core";
+import { bootstrapApplication, BrowserModule } from "@angular/platform-browser";
+import { provideRouter } from "@angular/router";
+import "zone.js";
 
-import { AppComponent } from './app/app.component';
-import { routes } from './app/app-routing.module';
+import { routes } from "./app/app-routing.module";
+import { AppComponent } from "./app/app.component";
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(BrowserModule, HttpClientModule),
+    importProvidersFrom(BrowserModule),
+    provideHttpClient(withInterceptorsFromDi()),
     provideRouter(routes),
   ],
 }).catch((err) => console.error(err));
