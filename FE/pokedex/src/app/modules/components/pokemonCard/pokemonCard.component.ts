@@ -7,10 +7,18 @@ import { catchError, tap } from "rxjs/operators";
 import { Pokemon } from "../../models/pokedex.model";
 import { PokemonService } from "../../services/pokedex.service";
 
+export interface Products {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  category: string;
+}
+
 @Component({
   selector: "app-pokemon-card",
-  templateUrl: "./pokemon-card.component.html",
-  styleUrls: ["./pokemon-card.component.scss"],
+  templateUrl: "./pokemonCard.component.html",
+  styleUrls: ["./pokemonCard.component.scss"],
   standalone: true,
   imports: [CommonModule, RouterModule],
 })

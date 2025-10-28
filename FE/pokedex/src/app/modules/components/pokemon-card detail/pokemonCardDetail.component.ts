@@ -9,8 +9,8 @@ import { PokemonService } from "../../services/pokedex.service";
 
 @Component({
   selector: "app-pokemon-car-detail",
-  templateUrl: "./pokemon-card detail.component.html",
-  styleUrls: ["./pokemon-card detail.component.scss"],
+  templateUrl: "./pokemonCardDetail.component.html",
+  styleUrls: ["./pokemonCardDetail.component.scss"],
   standalone: true,
   imports: [CommonModule],
 })
