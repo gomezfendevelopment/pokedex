@@ -4,7 +4,7 @@ export interface Pokemon {
   species_id: number;
   height: number;
   weight: number;
-  base_experience: number;
+  baseExperience: number;
   order: number;
   is_default: boolean;
   name: string;
@@ -13,54 +13,33 @@ export interface Pokemon {
   image_url: string;
 }
 
+interface PokemonSpecies {
+  identifier: string;
+  generationId: number;
+  evolutionChainId: number;
+  habitatId: number;
+  genderRate: number;
+  captureRate: number;
+  baseHappiness: number;
+  isBaby: boolean;
+  hatchCounter: number;
+  hasGenderDifferences: boolean;
+  growthRateId: number;
+  formsSwitchable: boolean;
+  order: number;
+}
+
 export interface PokemonDetail {
   id: number;
   identifier: string;
-  speciesId: number;
-  height: number;
-  weight: number;
-  baseExperience: number;
-  order: number;
-  isDefault: boolean;
   name: string;
   type1: string;
   type2: string;
-  imageUrl: string;
-}
-
-export interface PokemonSpecies {
-  id: number;
-  identifier: string;
-  generation_id: number;
-  evolves_from_species_id: number | null;
-  evolution_chain_id: number;
-  color_id: number;
-  shape_id: number;
-  habitat_id: number | null;
-  gender_rate: number;
-  capture_rate: number;
-  base_happiness: number;
-  is_baby: boolean;
-  hatch_counter: number;
-  has_gender_differences: boolean;
-  growth_rate_id: number;
-  forms_switchable: boolean;
-  order: number;
-  conquest_order: number | null;
-}
-
-export interface PokemonColor {
-  id: number;
-  identifier: string;
-}
-
-export interface PokemonShape {
-  id: number;
-  identifier: string;
-}
-
-export interface PokemonType {
-  id: number;
-  type_id: number;
-  slot: number;
+  height: number;
+  weight: number;
+  baseExperience: number;
+  species: PokemonSpecies;
+  color: string;
+  shape: string;
+  image_url: string;
 }

@@ -22,9 +22,10 @@
     </div>
     <div class="pokemon-image-container">
       <img
-        [src]="pokemon()!.imageUrl"
-        [alt]="pokemon()!.name"
+        [src]="pokemon().image_url"
+        [alt]="pokemon().name"
         class="pokemon-image"
+        (error)="onImageError(pokemon())"
       />
     </div>
     <div class="card-body">
@@ -47,7 +48,100 @@
           <span class="stat-value">{{ pokemon()!.baseExperience }}</span>
         </div>
       </div>
+
+      @if(pokemon().species) {
+      <div class="species-badges">
+        <span class="species-badge habitat">
+          Habitat: {{ getHabitatName(pokemon().species.habitatId) }}
+        </span>
+        <span class="species-badge color"> Color: {{ pokemon().color }} </span>
+      </div>
+      <div class="card-body">
+        <div class="species-info">
+          <div class="info-group">
+            <div class="info-item">
+              <span class="info-label">Base Happiness</span>
+              <span class="info-value">{{
+                pokemon().species.baseHappiness
+              }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Capture Rate</span>
+              <span class="info-value">{{
+                pokemon().species.captureRate
+              }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Gender Rate</span>
+              <span class="info-value">{{
+                getGenderRateText(pokemon().species.genderRate)
+              }}</span>
+            </div>
+          </div>
+
+          <div class="info-group">
+            <div class="info-item">
+              <span class="info-label">Growth Rate</span>
+              <span class="info-value">{{
+                getGrowthRateName(pokemon().species.growthRateId)
+              }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Hatch Steps</span>
+              <span class="info-value">{{
+                pokemon().species.hatchCounter * 255
+              }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Generation</span>
+              <span class="info-value">{{
+                pokemon().species.generationId
+              }}</span>
+            </div>
+          </div>
+
+          <div class="info-group">
+            <div class="info-item">
+              <span class="info-label">Forms Switchable</span>
+              <span class="info-value">{{
+                pokemon().species.formsSwitchable ? "Yes" : "No"
+              }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Has Gender Differences</span>
+              <span class="info-value">{{
+                pokemon().species.hasGenderDifferences ? "Yes" : "No"
+              }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Is Baby</span>
+              <span class="info-value">{{
+                pokemon().species.isBaby ? "Yes" : "No"
+              }}</span>
+            </div>
+          </div>
+
+          <div class="info-group">
+            <div class="info-item">
+              <span class="info-label">Evolution Chain</span>
+              <span class="info-value"
+                >#{{ pokemon().species.evolutionChainId }}</span
+              >
+            </div>
+            <div class="info-item">
+              <span class="info-label">Shape</span>
+              <span class="info-value">{{ pokemon().shape }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Order</span>
+              <span class="info-value">{{ pokemon().species.order }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
     </div>
   </div>
 </div>
+
 }

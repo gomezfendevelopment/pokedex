@@ -23,7 +23,6 @@ export class PokemonCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPokemons();
-    console.log("pokemons", this.pokemon());
   }
 
   loadPokemons(): void {

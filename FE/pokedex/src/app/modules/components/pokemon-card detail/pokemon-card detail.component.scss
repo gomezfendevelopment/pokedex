@@ -26,8 +26,7 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  width: calc(33.333% - 16px); /* 3 cards por fila considerando el gap */
-  min-width: 280px; /* Ancho mínimo para cada card */
+  width: calc(66.333% - 16px);
 }
 
 .pokedex-card::before {
@@ -144,6 +143,7 @@
   color: #666;
   text-transform: uppercase;
   font-weight: bold;
+  margin-top: 10px;
 }
 
 .info-value {
@@ -179,6 +179,7 @@
 }
 
 .stat-value {
+  margin-top: 10px;
   font-size: 12px;
   font-weight: bold;
   color: #333;
@@ -320,6 +321,14 @@
   .species-info,
   .pokemon-stats {
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
   }
+}
+
+.species-badges {
+  margin: 15px;
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  flex-direction: column;
 }

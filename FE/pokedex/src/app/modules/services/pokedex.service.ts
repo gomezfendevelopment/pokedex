@@ -1,14 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import {
-  Pokemon,
-  PokemonColor,
-  PokemonDetail,
-  PokemonShape,
-  PokemonSpecies,
-  PokemonType,
-} from "../models/pokedex.model";
+import { Pokemon, PokemonDetail } from "../models/pokedex.model";
 
 @Injectable({
   providedIn: "root",
@@ -23,52 +16,8 @@ export class PokemonService {
     return this.#http.get<Pokemon[]>(`${this.apiUrl}/pokemon`);
   }
 
-  getPokemonById(id: number): Observable<PokemonDetail> {
+  getPokemonById(id: string): Observable<PokemonDetail> {
     return this.#http.get<PokemonDetail>(`${this.apiUrl}/pokemon/${id}`);
-  }
-
-  getPokemonByName(name: string): Observable<Pokemon[]> {
-    return this.#http.get<Pokemon[]>(`${this.apiUrl}/pokemon/name/${name}`);
-  }
-
-  // Species endpoints
-  getSpecies(): Observable<PokemonSpecies[]> {
-    return this.#http.get<PokemonSpecies[]>(`${this.apiUrl}/pokemon-species`);
-  }
-
-  getSpeciesById(id: number): Observable<PokemonSpecies> {
-    return this.#http.get<PokemonSpecies>(
-      `${this.apiUrl}/pokemon-species/${id}`
-    );
-  }
-
-  // Colors endpoints
-  getColors(): Observable<PokemonColor[]> {
-    return this.#http.get<PokemonColor[]>(`${this.apiUrl}/pokemon-colors`);
-  }
-
-  getColorById(id: number): Observable<PokemonColor> {
-    return this.#http.get<PokemonColor>(`${this.apiUrl}/pokemon-colors/${id}`);
-  }
-
-  // Shapes endpoints
-  getShapes(): Observable<PokemonShape[]> {
-    return this.#http.get<PokemonShape[]>(`${this.apiUrl}/pokemon-shapes`);
-  }
-
-  getShapeById(id: number): Observable<PokemonShape> {
-    return this.#http.get<PokemonShape>(`${this.apiUrl}/pokemon-shapes/${id}`);
-  }
-
-  // Types endpoints
-  getPokemonTypes(): Observable<PokemonType[]> {
-    return this.#http.get<PokemonType[]>(`${this.apiUrl}/pokemon-types`);
-  }
-
-  getTypesByTypeId(typeId: number): Observable<PokemonType[]> {
-    return this.#http.get<PokemonType[]>(
-      `${this.apiUrl}/pokemon-types/type/${typeId}`
-    );
   }
 
   // Utility methods
