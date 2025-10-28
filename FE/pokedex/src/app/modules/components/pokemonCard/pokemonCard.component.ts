@@ -7,14 +7,6 @@ import { catchError, tap } from "rxjs/operators";
 import { Pokemon } from "../../models/pokedex.model";
 import { PokemonService } from "../../services/pokedex.service";
 
-export interface Products {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  category: string;
-}
-
 @Component({
   selector: "app-pokemon-card",
   templateUrl: "./pokemonCard.component.html",
